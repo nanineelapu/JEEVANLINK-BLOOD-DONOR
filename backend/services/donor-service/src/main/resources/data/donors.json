@@ -1,0 +1,62 @@
+[
+  {
+    "userId": "d1234567-e89b-12d3-a456-426614174001",
+    "bloodGroup": "A_POSITIVE",
+    "age": 28,
+    "latitude": 17.4156,
+    "longitude": 78.4111,
+    "city": "Hyderabad",
+    "available": true,
+    "totalDonations": 5
+  },
+  {
+    "userId": "d1234567-e89b-12d3-a456-426614174002",
+    "bloodGroup": "O_NEGATIVE",
+    "age": 35,
+    "latitude": 19.1017,
+    "longitude": 72.8360,
+    "city": "Mumbai",
+    "available": true,
+    "totalDonations": 12
+  },
+  {
+    "userId": "d1234567-e89b-12d3-a456-426614174003",
+    "bloodGroup": "B_POSITIVE",
+    "age": 24,
+    "latitude": 12.9592,
+    "longitude": 77.6444,
+    "city": "Bangalore",
+    "available": true,
+    "totalDonations": 2
+  },
+  {
+    "userId": "d1234567-e89b-12d3-a456-426614174004",
+    "bloodGroup": "AB_NEGATIVE",
+    "age": 42,
+    "latitude": 28.4595,
+    "longitude": 77.0266,
+    "city": "Gurgaon",
+    "available": true,
+    "totalDonations": 8
+  },
+  {
+    "userId": "d1234567-e89b-12d3-a456-426614174005",
+    "bloodGroup": "O_POSITIVE",
+    "age": 31,
+    "latitude": 10.0327,
+    "longitude": 76.2921,
+    "city": "Kochi",
+    "available": true,
+    "totalDonations": 15
+  },
+  {
+    "userId": "d1234567-e89b-12d3-a456-426614174006",
+    "bloodGroup": "A_NEGATIVE",
+    "age": 29,
+    "latitude": 17.3850,
+    "longitude": 78.4867,
+    "city": "Hyderabad",
+    "available": true,
+    "totalDonations": 3
+  }
+]

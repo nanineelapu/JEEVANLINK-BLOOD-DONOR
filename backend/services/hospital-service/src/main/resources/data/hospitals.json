@@ -1,0 +1,56 @@
+[
+  {
+    "userId": "h1234567-e89b-12d3-a456-426614174001",
+    "name": "Apollo Health City",
+    "address": "Jubilee Hills",
+    "city": "Hyderabad",
+    "latitude": 17.4156,
+    "longitude": 78.4111,
+    "contactPhone": "040-23607777"
+  },
+  {
+    "userId": "h1234567-e89b-12d3-a456-426614174002",
+    "name": "Fortis Memorial Research Institute",
+    "address": "Sector 44",
+    "city": "Gurgaon",
+    "latitude": 28.4595,
+    "longitude": 77.0266,
+    "contactPhone": "0124-4921021"
+  },
+  {
+    "userId": "h1234567-e89b-12d3-a456-426614174003",
+    "name": "Manipal Hospital",
+    "address": "HAL Old Airport Road",
+    "city": "Bangalore",
+    "latitude": 12.9592,
+    "longitude": 77.6444,
+    "contactPhone": "080-25024444"
+  },
+  {
+    "userId": "h1234567-e89b-12d3-a456-426614174004",
+    "name": "Nanavati Max Super Speciality Hospital",
+    "address": "S.V. Road, Vile Parle (West)",
+    "city": "Mumbai",
+    "latitude": 19.1017,
+    "longitude": 72.8360,
+    "contactPhone": "022-26267500"
+  },
+  {
+    "userId": "h1234567-e89b-12d3-a456-426614174005",
+    "name": "Medanta - The Medicity",
+    "address": "CH Baktawar Singh Road, Sector 38",
+    "city": "Gurgaon",
+    "latitude": 28.4284,
+    "longitude": 77.0375,
+    "contactPhone": "0124-4141414"
+  },
+  {
+    "userId": "h1234567-e89b-12d3-a456-426614174006",
+    "name": "Amrita Hospital",
+    "address": "Ponekkara",
+    "city": "Kochi",
+    "latitude": 10.0327,
+    "longitude": 76.2921,
+    "contactPhone": "0484-2851234"
+  }
+]

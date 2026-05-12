@@ -1,0 +1,18 @@
+[
+  {
+    "id": "u1234567-e89b-12d3-a456-426614174001",
+    "email": "donor@example.com",
+    "passwordHash": "$2a$10$8.UnVuG9HHgffUDAlk8q6uy5y.6YV6o.y6o.y6o.y6o.y6o.y6o.y",
+    "fullName": "John Doe",
+    "phone": "1234567890",
+    "role": "DONOR"
+  },
+  {
+    "id": "u1234567-e89b-12d3-a456-426614174002",
+    "email": "hospital@example.com",
+    "passwordHash": "$2a$10$8.UnVuG9HHgffUDAlk8q6uy5y.6YV6o.y6o.y6o.y6o.y6o.y6o.y",
+    "fullName": "City Hospital Admin",
+    "phone": "0987654321",
+    "role": "HOSPITAL_ADMIN"
+  }
+]

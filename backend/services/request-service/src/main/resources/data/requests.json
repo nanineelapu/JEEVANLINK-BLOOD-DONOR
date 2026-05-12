@@ -1,0 +1,42 @@
+[
+  {
+    "id": "r1234567-e89b-12d3-a456-426614174001",
+    "hospitalId": "h1234567-e89b-12d3-a456-426614174001",
+    "bloodGroup": "A_POSITIVE",
+    "unitsRequired": 2,
+    "priority": "URGENT",
+    "patientName": "Alice Smith",
+    "reason": "Emergency Surgery",
+    "status": "OPEN"
+  },
+  {
+    "id": "r1234567-e89b-12d3-a456-426614174002",
+    "hospitalId": "h1234567-e89b-12d3-a456-426614174004",
+    "bloodGroup": "O_NEGATIVE",
+    "unitsRequired": 5,
+    "priority": "CRITICAL",
+    "patientName": "Robert Brown",
+    "reason": "Trauma Case",
+    "status": "OPEN"
+  },
+  {
+    "id": "r1234567-e89b-12d3-a456-426614174003",
+    "hospitalId": "h1234567-e89b-12d3-a456-426614174002",
+    "bloodGroup": "AB_NEGATIVE",
+    "unitsRequired": 1,
+    "priority": "NORMAL",
+    "patientName": "Sarah Wilson",
+    "reason": "Routine Procedure",
+    "status": "OPEN"
+  },
+  {
+    "id": "r1234567-e89b-12d3-a456-426614174004",
+    "hospitalId": "h1234567-e89b-12d3-a456-426614174006",
+    "bloodGroup": "O_POSITIVE",
+    "unitsRequired": 3,
+    "priority": "URGENT",
+    "patientName": "Kumar Sangakkara",
+    "reason": "Thalassemia Treatment",
+    "status": "OPEN"
+  }
+]

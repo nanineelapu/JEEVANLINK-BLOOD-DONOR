@@ -1,0 +1,61 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: false
+      routes:
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/api/users/**,/api/auth/**
+          filters:
+            - name: JwtAuth
+        - id: donor-service
+          uri: lb://DONOR-SERVICE
+          predicates:
+            - Path=/api/donors/**
+          filters:
+            - name: JwtAuth
+        - id: hospital-service
+          uri: lb://HOSPITAL-SERVICE
+          predicates:
+            - Path=/api/hospitals/**,/api/inventory/**
+          filters:
+            - name: JwtAuth
+        - id: request-service
+          uri: lb://REQUEST-SERVICE
+          predicates:
+            - Path=/api/requests/**
+          filters:
+            - name: JwtAuth
+        - id: ai-matcher-service
+          uri: lb://AI-MATCHER-SERVICE
+          predicates:
+            - Path=/api/matcher/**,/api/ai/**
+          filters:
+            - name: JwtAuth
+        - id: notification-service
+          uri: lb://NOTIFICATION-SERVICE
+          predicates:
+            - Path=/api/notifications/**
+          filters:
+            - name: JwtAuth
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:jeevanlink-super-secret-key-change-me-in-production-32chars-min}
+
+logging:
+  level:
+    org.springframework.cloud.gateway: INFO
