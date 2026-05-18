@@ -1,0 +1,201 @@
+version: '3.8'
+
+services:
+  # ==========================================================
+  # INFRASTRUCTURE SERVICES
+  # ==========================================================
+
+  # 1. Service Registry (Eureka Server)
+  service-registry:
+    build:
+      context: ./backend/infrastructure/service-registry
+      dockerfile: Dockerfile
+    container_name: service-registry
+    ports:
+      - "8761:8761"
+    networks:
+      - blood-donor-network
+    restart: on-failure
+    healthcheck:
+      test: ["CMD-SHELL", "nc -z localhost 8761 || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # 2. Config Server
+  config-server:
+    build:
+      context: ./backend/infrastructure/config-server
+      dockerfile: Dockerfile
+    container_name: config-server
+    ports:
+      - "8888:8888"
+    environment:
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://service-registry:8761/eureka/
+    depends_on:
+      service-registry:
+        condition: service_healthy
+    networks:
+      - blood-donor-network
+    restart: on-failure
+    healthcheck:
+      test: ["CMD-SHELL", "nc -z localhost 8888 || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # 3. API Gateway
+  api-gateway:
+    build:
+      context: ./backend/infrastructure/api-gateway
+      dockerfile: Dockerfile
+    container_name: api-gateway
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_CLOUD_CONFIG_URI=http://config-server:8888
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://service-registry:8761/eureka/
+    depends_on:
+      config-server:
+        condition: service_healthy
+    networks:
+      - blood-donor-network
+    restart: on-failure
+
+  # ==========================================================
+  # CORE SERVICES (MICROSERVICES)
+  # ==========================================================
+
+  # 4. User Service
+  user-service:
+    build:
+      context: ./backend/services/user-service
+      dockerfile: Dockerfile
+    container_name: user-service
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_CLOUD_CONFIG_URI=http://config-server:8888
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://service-registry:8761/eureka/
+      - JWT_SECRET=jeevanlink-super-secret-key-change-me-in-production-32chars-min
+    depends_on:
+      config-server:
+        condition: service_healthy
+    networks:
+      - blood-donor-network
+    restart: on-failure
+
+  # 5. Donor Service
+  donor-service:
+    build:
+      context: ./backend/services/donor-service
+      dockerfile: Dockerfile
+    container_name: donor-service
+    ports:
+      - "8082:8082"
+    environment:
+      - SPRING_CLOUD_CONFIG_URI=http://config-server:8888
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://service-registry:8761/eureka/
+    depends_on:
+      config-server:
+        condition: service_healthy
+    networks:
+      - blood-donor-network
+    restart: on-failure
+
+  # 6. Hospital Service
+  hospital-service:
+    build:
+      context: ./backend/services/hospital-service
+      dockerfile: Dockerfile
+    container_name: hospital-service
+    ports:
+      - "8083:8083"
+    environment:
+      - SPRING_CLOUD_CONFIG_URI=http://config-server:8888
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://service-registry:8761/eureka/
+    depends_on:
+      config-server:
+        condition: service_healthy
+    networks:
+      - blood-donor-network
+    restart: on-failure
+
+  # 7. Request Service
+  request-service:
+    build:
+      context: ./backend/services/request-service
+      dockerfile: Dockerfile
+    container_name: request-service
+    ports:
+      - "8084:8084"
+    environment:
+      - SPRING_CLOUD_CONFIG_URI=http://config-server:8888
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://service-registry:8761/eureka/
+    depends_on:
+      config-server:
+        condition: service_healthy
+    networks:
+      - blood-donor-network
+    restart: on-failure
+
+  # 8. AI Matcher Service
+  ai-matcher-service:
+    build:
+      context: ./backend/services/ai-matcher-service
+      dockerfile: Dockerfile
+    container_name: ai-matcher-service
+    ports:
+      - "8085:8085"
+    environment:
+      - SPRING_CLOUD_CONFIG_URI=http://config-server:8888
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://service-registry:8761/eureka/
+    depends_on:
+      config-server:
+        condition: service_healthy
+    networks:
+      - blood-donor-network
+    restart: on-failure
+
+  # 9. Notification Service
+  notification-service:
+    build:
+      context: ./backend/services/notification-service
+      dockerfile: Dockerfile
+    container_name: notification-service
+    ports:
+      - "8086:8086"
+    environment:
+      - SPRING_CLOUD_CONFIG_URI=http://config-server:8888
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://service-registry:8761/eureka/
+    depends_on:
+      config-server:
+        condition: service_healthy
+    networks:
+      - blood-donor-network
+    restart: on-failure
+
+  # ==========================================================
+  # FRONTEND SERVICE
+  # ==========================================================
+
+  # 10. Frontend React Web App
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - api-gateway
+    networks:
+      - blood-donor-network
+    restart: always
+
+# ==========================================================
+# NETWORKS DEFINITION
+# ==========================================================
+networks:
+  blood-donor-network:
+    driver: bridge
