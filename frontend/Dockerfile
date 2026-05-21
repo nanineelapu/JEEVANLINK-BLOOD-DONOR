@@ -26,9 +26,9 @@ FROM nginx:1.25-alpine
 COPY --from=builder /app/dist /usr/share/nginx/html
 
 # Copy a custom Nginx configuration to support SPA routing (React Router)
-# and proxy requests to backend API gateway
+# and proxy requests to backend API gateway (configured for port 3000)
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-EXPOSE 80
+EXPOSE 3000
 
 CMD ["nginx", "-g", "daemon off;"]

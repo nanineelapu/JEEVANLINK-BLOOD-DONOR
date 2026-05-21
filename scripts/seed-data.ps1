@@ -2,11 +2,11 @@
 # Run AFTER all backend services are up and Eureka shows them green.
 #
 # Usage:   .\scripts\seed-data.ps1
-# Gateway: http://localhost:8080 by default
+# Gateway: http://localhost:8089 by default
 
 $ErrorActionPreference = 'Stop'
 $gateway = $env:JEEVANLINK_GATEWAY
-if (-not $gateway) { $gateway = 'http://localhost:8080' }
+if (-not $gateway) { $gateway = 'http://localhost:8089' }
 
 function PostJson($path, $body, $token) {
     $headers = @{ 'Content-Type' = 'application/json' }
